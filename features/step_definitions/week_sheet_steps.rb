@@ -1,7 +1,6 @@
 Given(/^there are no timesheets$/) do
 end
 
-Timesheet = Struct.new :status, :total_hours
 
 When(/^I go to the timesheets display page$/) do
   visit timesheets_url
@@ -11,6 +10,7 @@ Then(/^I should see that there are no timesheets$/) do
   page.should have_content("There are no timesheets")
 end
 
+Timesheet = Struct.new :status, :total_hours
 Given(/^there are some timesheets$/) do
   @timesheets = [
     Timesheet.new("draft", "40"),

@@ -4,10 +4,11 @@ There are no timesheets.
   %header
     %h2 Draft
   %ul
-    %li.timesheet 40
-    %li.timesheet 45
+    - @timesheets.draft do |timesheet|
+      %li.timesheet=timesheet.total_hours
 %section.timesheets.approved
   %header
     %h2 Approved
   %ul
-    %li.timesheet 42
+    - @timesheets.approved do |timesheet|
+      %li.timesheet=timesheet.total_hours
