@@ -1,9 +1,9 @@
-Given(/^there are no timesheets$/) do
+Given(/^there are no timesheets for a user$/) do
 end
 
 
-When(/^I go to the timesheets display page$/) do
-  visit timesheets_url
+When(/^I go to the user timesheets display page$/) do
+  visit for_user_timesheets_url
 end
 
 Then(/^I should see that there are no timesheets$/) do
@@ -11,7 +11,7 @@ Then(/^I should see that there are no timesheets$/) do
 end
 
 Timesheet = Struct.new :status, :total_hours
-Given(/^there are some timesheets$/) do
+Given(/^there are some timesheets for a user$/) do
   @timesheets = [
     Timesheet.new("draft", "40"),
     Timesheet.new("draft", "45"),
@@ -19,7 +19,7 @@ Given(/^there are some timesheets$/) do
   ]
 end
 
-Then(/^I should see the timesheets grouped by status$/) do
+Then(/^I should see the user's timesheets grouped by status$/) do
   @timesheets.each do |timesheet|
     within(".#{timesheet.status}") do
       page.should have_css(".timesheet", text: timesheet.total_hours)

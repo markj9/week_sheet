@@ -1,6 +1,6 @@
 Timesheet = Struct.new :status, :total_hours
 class TimesheetsController < ApplicationController
-  def index
+  def for_user
     @timesheets = Object.new
     def @timesheets.draft(&block)
     [

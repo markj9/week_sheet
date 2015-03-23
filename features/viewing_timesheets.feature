@@ -1,11 +1,11 @@
-Feature:  Viewing the timesheets
+Feature:  Viewing the timesheets for a user
 
-  Scenario:  No timesheets
-    Given there are no timesheets
-    When I go to the timesheets display page
+  Scenario:  No timesheets for a user
+    Given there are no timesheets for a user
+    When I go to the user timesheets display page
     Then I should see that there are no timesheets
 
   Scenario:  Some timesheets
-    Given there are some timesheets
-    When I go to the timesheets display page
-    Then I should see the timesheets grouped by status
+    Given there are some timesheets for a user
+    When I go to the user timesheets display page
+    Then I should see the user's timesheets grouped by status
