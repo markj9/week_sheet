@@ -1,17 +1,11 @@
 Timesheet = Struct.new :status, :total_hours
 class TimesheetsController < ApplicationController
   def for_user
-    @timesheets = Object.new
-    def @timesheets.draft(&block)
-    [
+    timesheets = [
       Timesheet.new("draft", "40"),
       Timesheet.new("draft", "45"),
-    ].each(&block)
-    end
-    def @timesheets.approved(&block)
-      [
-        Timesheet.new("approved", "42")
-      ].each(&block)
-    end
+      Timesheet.new("approved", "42")
+    ]
+    @timesheets = WeekSheet::Timesheets::Presenters::Collection.for(timesheets)
   end
 end
