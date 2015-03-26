@@ -11,12 +11,14 @@ module WeekSheet
           @timesheets = timesheets
         end
 
-        def draft(&block)
-          self.timesheets.select{|timesheet| timesheet.status == "draft"}.each(&block)
+        ["draft", "approved"].each do |status|
+          define_method status do |&block|
+            in_status(status, &block)
+          end
         end
 
-        def approved(&block)
-          self.timesheets.select{|timesheet| timesheet.status == "approved"}.each(&block)
+       def in_status(status, &block)
+          self.timesheets.select{|timesheet| timesheet.status == status}.each(&block)
         end
       end
     end
