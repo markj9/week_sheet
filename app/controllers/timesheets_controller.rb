@@ -1,3 +1,4 @@
+require 'timesheets/presenters/collection'
 Timesheet = Struct.new :status, :total_hours
 class TimesheetsController < ApplicationController
   def for_user
