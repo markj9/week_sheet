@@ -9,5 +9,11 @@ describe "Looking up timesheets" do
           expect(Timesheet.for_user).to be_empty
         end
       end
+
+      it "returns all the timesheets in the system" do
+        approved = Timesheet.create! status: "approved", total_hours: 55
+        draft = Timesheet.create! status: "draft", total_hours: 29
+        expect(Timesheet.for_user).to eq([approved, draft])
+      end
     end
 end
