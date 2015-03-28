@@ -1,6 +1,14 @@
 Given(/^there are no timesheets for a user$/) do
+  Timesheet.destroy_all
 end
 
+Given(/^there are some timesheets for a user$/) do
+  @timesheets = [
+    Timesheet.create!(status:"draft", total_hours: 40),
+    Timesheet.create!(status: "draft", total_hours: 45),
+    Timesheet.create!(status: "approved", total_hours: 43)
+  ]
+end
 
 When(/^I go to the user timesheets display page$/) do
   visit for_user_timesheets_url
@@ -8,15 +16,6 @@ end
 
 Then(/^I should see that there are no timesheets$/) do
   page.should have_content("There are no timesheets")
-end
-
-Timesheet = Struct.new :status, :total_hours
-Given(/^there are some timesheets for a user$/) do
-  @timesheets = [
-    Timesheet.new("draft", "40"),
-    Timesheet.new("draft", "45"),
-    Timesheet.new("approved", "42")
-  ]
 end
 
 Then(/^I should see the user's timesheets grouped by status$/) do
