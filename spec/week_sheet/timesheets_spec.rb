@@ -5,7 +5,7 @@ describe WeekSheet::Timesheets do
   describe ".for_user" do
     it "wraps the timesheets for a user in a presenter" do
       for_user = double "timesheets"
-      stub_const("::Timesheet", stub(for_user: for_user))
+      allow(::Timesheet).to receive(:for_user).and_return(for_user)
       presenter = double
       WeekSheet::Timesheets::Presenters::Collection.stub(:for).with(for_user) { presenter }
 
